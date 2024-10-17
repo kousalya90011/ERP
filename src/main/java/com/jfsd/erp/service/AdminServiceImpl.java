@@ -36,4 +36,10 @@ public class AdminServiceImpl implements AdminService
 	public List<Student> viewallstudents() {
 		return studentRepository.findAll();
 	}
+
+	@Override
+	public String deletefacultybyEmail(String femail) {
+		facultyRepository.deletefacultybyEmail(femail);
+		return "Faculty Moved to Old Staff Records Successfully";
+	}
 }

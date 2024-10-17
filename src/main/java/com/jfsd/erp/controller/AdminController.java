@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jfsd.erp.models.Admin;
@@ -53,5 +54,11 @@ public class AdminController
 	 {
 		return adminService.viewallstudents();
 	 }
+	 @GetMapping("deletefaculty")
+	 public String deletefacultybyId(@RequestParam("email") String femail)
+	 {
+		 return adminService.deletefacultybyEmail(femail);
+	 }
+	 
 
 }

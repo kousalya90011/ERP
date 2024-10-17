@@ -11,4 +11,6 @@ public interface AdminService
 	public Admin checklogin(int userid, String pwd);
 	public List<Faculty> viewallfaculty();
 	public List<Student> viewallstudents();
+	public String deletefacultybyEmail(String femail);
+	
 }
