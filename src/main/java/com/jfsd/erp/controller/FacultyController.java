@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,6 +13,8 @@ import com.jfsd.erp.models.User.Role;
 import com.jfsd.erp.service.FacultyService;
 
 @Controller
+@ResponseBody
+@RequestMapping("/faculty")
 public class FacultyController 
 {
 	@Autowired
@@ -19,7 +22,6 @@ public class FacultyController
 	
 	
 	 @PostMapping("insertfaculty")
-	 @ResponseBody
 	 public String insertfaculty(@RequestBody Faculty f)
 	 {
 		// int userid = f.getUserid();
@@ -57,7 +59,6 @@ public class FacultyController
 	 
 	 
 	 @PostMapping("checkfacultylogin")
-	 @ResponseBody
 	 public String checkFacultylogin(@RequestParam String email,@RequestParam String password)
 	 {
 		

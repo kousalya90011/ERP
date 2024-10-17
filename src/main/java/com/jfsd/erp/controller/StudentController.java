@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,6 +13,8 @@ import com.jfsd.erp.models.User.Role;
 import com.jfsd.erp.service.StudentService;
 
 @Controller
+@ResponseBody
+@RequestMapping("/student")
 public class StudentController 
 {
 	
@@ -19,7 +22,6 @@ public class StudentController
 	private StudentService studentService;
 	
 	 @PostMapping("insertstudent")
-	 @ResponseBody
 	 public String insertstudent(@RequestBody Student s)
 	 {
 		 //user nuchi student inherit cheysam
@@ -61,7 +63,6 @@ public class StudentController
 	
 	 
 	 @PostMapping("checkstudentlogin")
-	 @ResponseBody
 	 public String checkStudentlogin(@RequestParam String email,@RequestParam String password)
 	 {
 		
