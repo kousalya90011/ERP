@@ -23,4 +23,9 @@ public class FacultyServiceImpl implements FacultyService
 		return facultyRepository.checkFacultylogin(email, password);
 	}
 
+	@Override
+	public Faculty findFacultyById(String facultyId) {
+		return (Faculty) facultyRepository.findByFacultyId(facultyId);
+	}
+
 }

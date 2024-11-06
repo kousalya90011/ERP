@@ -5,4 +5,5 @@ import com.jfsd.erp.models.Faculty;
 public interface FacultyService {
 public String FacultyRegistration(Faculty f);
 public Faculty checklogin(String email,String password);
+public Faculty findFacultyById(String facultyId);
 }

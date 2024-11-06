@@ -138,6 +138,7 @@
         h2 {
             text-align: center;
             margin-bottom: 20px;
+            color: #fff;
         }
         .form-group {
             display: flex;
@@ -194,45 +195,6 @@
             border-radius: 10px;
         }
     </style>
-    <script>
-    /* function setFormAction() {
-        const roleElement = document.getElementById('role'); // Get the selected role from the dropdown
-        const role = roleElement.value; // Get the value of the selected role
-        const form = document.getElementById("userForm");
-
-        if (!role) {
-            console.error("Role is not selected yet.");
-            return; // Exit the function if role is not selected
-        }
-
-        if (role === "STUDENT") {
-            form.action = "/insertstudent";
-        } else if (role === "FACULTY") {
-            form.action = "/insertfaculty";
-        }
-
-        form.submit(); // Submit the form once the action is set
-    } */
-
-   /*  function toggleFormFields() {
-        const role = document.getElementById('role').value;
-        const studentFields = document.getElementById('studentFields');
-        const facultyFields = document.getElementById('facultyFields');
-
-        if (role === 'STUDENT') {
-            studentFields.style.display = 'block';
-            facultyFields.style.display = 'none';
-            document.getElementById('designation').removeAttribute('required');
-        } else if (role === 'FACULTY') {
-            studentFields.style.display = 'none';
-            facultyFields.style.display = 'block';
-            document.getElementById('designation').setAttribute('required', 'required');
-            document.getElementById('joinyear').removeAttribute('required');
-            document.getElementById('parentName').removeAttribute('required');
-        }
-    } */
-
-    </script>
 </head>
 <body>
 
@@ -259,11 +221,10 @@
     <h1>ERP SYSTEM</h1>
     <p>Welcome to our ERP system where you can get the required data of yours.</p>
 </section>
-<h2 align="center">Post Notification</h2>
-<div class="form-container" align="center">
 
-    <form id="postNotification" action="admin/notification" method="post">
-       
+<div class="form-container" align="center">
+	<h2 align="center">Post Notification</h2>
+    <form id="postNotification" action="notification" method="post">
         <div class="form-group">
             <label for="role">Role:</label>
             <select id="role" name="role" required>
@@ -271,12 +232,15 @@
                 <option value="STUDENT">Student</option>
                 <option value="FACULTY">Faculty</option>
             </select>
-        </div class="form-group">
-			 <label for="mesg">MESSAGE</label>
-			 <input type="text" id="mesg" name="mesg" required/>
-       <div>
-            <button type="submit" class="submit-button">Register</button>
+        </div> <!-- Corrected closing div tag -->
+
+        <div class="form-group">
+            <label for="mesg">Message:</label>
+            <input type="text" id="mesg" name="mesg" required/>
         </div>
+         <button type="submit" class="submit-button">POST</button>
     </form>
+</div>
+
 </body>
 </html>

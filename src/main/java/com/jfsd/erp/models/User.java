@@ -20,7 +20,7 @@ public abstract class User
 {
 	@Id
 	@Column(name = "uid")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int userid;
 	
 	@Column(name = "firstname",length = 50,nullable = false)
@@ -43,6 +43,9 @@ public abstract class User
 	
 	@Column(name="dob",nullable=false,length = 20) 
 	private String dateOfBirth;
+	
+	 @Column(name = "department", nullable = false, length = 100)
+	 private String department;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role", nullable = false)
@@ -125,6 +128,14 @@ public abstract class User
 
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 	
 }

@@ -2,8 +2,8 @@ package com.jfsd.erp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,12 +21,13 @@ public class FacultyController
 	FacultyService facultyService;
 	
 	
-	 @PostMapping("insertfaculty")
-	 public String insertfaculty(@RequestBody Faculty f)
+	@PostMapping("insertfaculty")
+	 @ResponseBody
+	 public String insertfaculty(@ModelAttribute Faculty f)
 	 {
 		// int userid = f.getUserid();
 		 //inherited from user
-		 String firstname = f.getFirstname();
+		 String firstname =f.getFirstname();
 		 String lastname = f.getLastname();
 		 String email = f.getEmail();
 		 String password = f.getPassword();
@@ -38,6 +39,7 @@ public class FacultyController
 		 String department = f.getDepartment();
 		 String designation = f.getDesignation();
 		 double salary = f.getSalary();
+		 String reg_status=f.getReg_status();
 		 
 		 Faculty fac = new Faculty();
 		 //fac.setUserid(userid);
@@ -52,11 +54,16 @@ public class FacultyController
 		 fac.setDepartment(department);
 		 fac.setDesignation(designation);
 		 fac.setSalary(salary);
+		 fac.setReg_status(reg_status);
 		 
-		 String msg = facultyService.FacultyRegistration(fac);
-		 return msg;
+		 String facultyId = fac.generateFacultyId();
+		    fac.setFacultyId(facultyId);
+
+		    // Register the faculty via the service
+		    String msg = facultyService.FacultyRegistration(fac);
+
+		    return msg + " with Faculty ID: " + facultyId;
 	 }
-	 
 	 
 	 @PostMapping("checkfacultylogin")
 	 public String checkFacultylogin(@RequestParam String email,@RequestParam String password)

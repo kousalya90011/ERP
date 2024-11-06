@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jfsd.erp.models.Faculty;
+import java.util.List;
+
 
 @Repository
 public interface FacultyRepository extends JpaRepository<Faculty, Integer>
@@ -18,4 +20,6 @@ public interface FacultyRepository extends JpaRepository<Faculty, Integer>
 	@Transactional
 	@Query("delete from User f where f.email = ?1")
 	public int deletefacultybyEmail(String email);
+	
+	public List<Faculty> findByFacultyId(String facultyId);
 }
