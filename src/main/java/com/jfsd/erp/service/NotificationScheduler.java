@@ -20,9 +20,9 @@ public class NotificationScheduler {
     @Autowired
     private NotificationService notificationService;
   
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 35000) 
     public void sendScheduledNotifications() {
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0); // Truncate seconds and milliseconds
         System.out.println("Checking notifications at " + now);
 
         // Fetch notifications that are due and not yet sent
@@ -33,12 +33,15 @@ public class NotificationScheduler {
             // Print the notification message to the console
             notificationService.sendNotification(notification);
 
-            // Mark the notification as sent
-            String formattedTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            notification.setPostedTime(formattedTime);
+            // Format the current time and set it as posted time
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            notification.setPostedTime(now.format(formatter)); // Save the formatted time as a String
+
+            // Save the updated notification
             notificationRepository.save(notification);
 
             System.out.println("Notification sent and updated in database: " + notification.getMesg());
         }
     }
+
 }

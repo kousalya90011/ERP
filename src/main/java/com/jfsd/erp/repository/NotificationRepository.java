@@ -16,6 +16,6 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
 	//@Query("select a from Notification a where a.scheduledTime =?1")
 	//public List<Notification> findByScheduledTimeBeforeAndPostedTimeIsNull(LocalDateTime scheduledTime);
 
-	 @Query("SELECT a FROM Notification a WHERE a.scheduledTime <= ?1")
+	 @Query("SELECT a FROM Notification a WHERE a.scheduledTime = ?1")
 	    List<Notification> findByScheduledTimeBeforeAndPostedTimeIsNull(LocalDateTime scheduledTime);
 }

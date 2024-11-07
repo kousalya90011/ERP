@@ -41,7 +41,7 @@ public class Notification {
 
     @PrePersist
     protected void onCreate() {
-        this.postedTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.postedTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     // Getters and setters
