@@ -1,7 +1,6 @@
 package com.jfsd.erp.service;
 
 import java.time.LocalDateTime;
-
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.jfsd.erp.models.Notification;
 import com.jfsd.erp.repository.NotificationRepository;
-import com.jfsd.erp.service.NotificationService;
 
 @Service
 public class NotificationScheduler {
@@ -21,22 +19,26 @@ public class NotificationScheduler {
 
     @Autowired
     private NotificationService notificationService;
-
-    // Run every minute to check for due notifications
+  
     @Scheduled(fixedRate = 60000)
     public void sendScheduledNotifications() {
         LocalDateTime now = LocalDateTime.now();
-        
+        System.out.println("Checking notifications at " + now);
+
         // Fetch notifications that are due and not yet sent
         List<Notification> dueNotifications = notificationRepository.findByScheduledTimeBeforeAndPostedTimeIsNull(now);
-        
+        System.out.println("Found " + dueNotifications.size() + " notifications due for sending");
+
         for (Notification notification : dueNotifications) {
-            // Send the notification (implement the actual send logic in notificationService)
+            // Print the notification message to the console
             notificationService.sendNotification(notification);
-            
-            // Mark as sent by setting the posted time
-            notification.setPostedTime(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+            // Mark the notification as sent
+            String formattedTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            notification.setPostedTime(formattedTime);
             notificationRepository.save(notification);
+
+            System.out.println("Notification sent and updated in database: " + notification.getMesg());
         }
     }
 }

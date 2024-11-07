@@ -48,6 +48,10 @@ public class AdminServiceImpl implements AdminService
 	private FacultyService facultyService;
 	@Autowired
 	private SectionService sectionService;
+	@Autowired
+	private NotificationService notificationService;
+	@Autowired
+	private NotificationScheduler notificationScheduler;
 	
 	@Override
 	public Admin checklogin(int userid, String pwd) {
@@ -83,17 +87,17 @@ public class AdminServiceImpl implements AdminService
 //		notificationRepository.save(n);
 //		return "Notification Posted Successfully";
 //	}
-	@Override
-	public String postNotification(Notification.Role role, String message, LocalDateTime scheduledTime) {
-	    Notification notification = new Notification();
-	    notification.setRole(role);
-	    notification.setMesg(message);
-	    notification.setScheduledTime(scheduledTime);
-	    notificationRepository.save(notification);
-	    return "Notification Scheduled Successfully";
-	}
-
-
+	 @Override
+	 public String postNotification(Notification.Role role, String message, LocalDateTime scheduledTime) { 
+          Notification notification = new Notification();
+	     notification.setRole(role);
+	     notification.setMesg(message);
+	     notification.setScheduledTime(scheduledTime);
+	     notificationRepository.save(notification);
+	        
+	        return "Notification Scheduled Successfully";
+	    }
+	
 	@Override
 	public void addCourse(Course course) {
 		courseRepository.save(course);

@@ -35,7 +35,8 @@ public class Notification {
     // Enum for defining roles
     public enum Role {
         FACULTY,
-        STUDENT
+        STUDENT,
+        ALL
     }
 
     @PrePersist
